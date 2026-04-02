@@ -1,0 +1,15 @@
+C:\Users\Whitney\Desktop\fluxplay\backend\src\main\java\com\fluxplay\config\CorsFilter.java
+C:\Users\Whitney\Desktop\fluxplay\backend\src\main\java\com\fluxplay\dto\ConteudoRequestDTO.java
+C:\Users\Whitney\Desktop\fluxplay\backend\src\main\java\com\fluxplay\dto\ConteudoResponseDTO.java
+C:\Users\Whitney\Desktop\fluxplay\backend\src\main\java\com\fluxplay\dto\LoginRequestDTO.java
+C:\Users\Whitney\Desktop\fluxplay\backend\src\main\java\com\fluxplay\dto\UsuarioRequestDTO.java
+C:\Users\Whitney\Desktop\fluxplay\backend\src\main\java\com\fluxplay\dto\UsuarioResponseDTO.java
+C:\Users\Whitney\Desktop\fluxplay\backend\src\main\java\com\fluxplay\entity\Conteudo.java
+C:\Users\Whitney\Desktop\fluxplay\backend\src\main\java\com\fluxplay\entity\TipoConteudo.java
+C:\Users\Whitney\Desktop\fluxplay\backend\src\main\java\com\fluxplay\entity\Usuario.java
+C:\Users\Whitney\Desktop\fluxplay\backend\src\main\java\com\fluxplay\repository\ConteudoRepository.java
+C:\Users\Whitney\Desktop\fluxplay\backend\src\main\java\com\fluxplay\repository\UsuarioRepository.java
+C:\Users\Whitney\Desktop\fluxplay\backend\src\main\java\com\fluxplay\resource\ConteudoResource.java
+C:\Users\Whitney\Desktop\fluxplay\backend\src\main\java\com\fluxplay\resource\UsuarioResource.java
+C:\Users\Whitney\Desktop\fluxplay\backend\src\main\java\com\fluxplay\service\ConteudoService.java
+C:\Users\Whitney\Desktop\fluxplay\backend\src\main\java\com\fluxplay\service\UsuarioService.java
