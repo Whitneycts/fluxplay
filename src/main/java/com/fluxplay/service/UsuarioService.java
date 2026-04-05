@@ -10,6 +10,7 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.BadRequestException;
+import jakarta.ws.rs.NotAuthorizedException;
 import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
@@ -49,7 +50,12 @@ public class UsuarioService {
         Usuario usuario = usuarioRepository.buscarPorEmail(dto.email);
 
         if (usuario == null) {
-            throw new NotFoundException("Senha inválida");
+            throw new NotFoundException("Usuário não encontrado");
+        }
+
+        // ← verifica se a senha bate com a salva no banco
+        if (!dto.senha.equals(usuario.senha)) {
+            throw new NotAuthorizedException("Senha inválida");
         }
 
         return toResponseDTO(usuario);

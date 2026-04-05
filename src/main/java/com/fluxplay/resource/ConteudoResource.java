@@ -6,7 +6,7 @@ import com.fluxplay.entity.TipoConteudo;
 import com.fluxplay.service.ConteudoService;
 
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
+
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;

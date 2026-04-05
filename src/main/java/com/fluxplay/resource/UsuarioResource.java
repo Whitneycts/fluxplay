@@ -3,7 +3,6 @@ package com.fluxplay.resource;
 import com.fluxplay.dto.LoginRequestDTO;
 import com.fluxplay.dto.UsuarioRequestDTO;
 import com.fluxplay.dto.UsuarioResponseDTO;
-import com.fluxplay.entity.Usuario;
 import com.fluxplay.service.UsuarioService;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
