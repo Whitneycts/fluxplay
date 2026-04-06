@@ -1,0 +1,70 @@
+<div class="catalogo">
+
+  <div class="hero" [style.backgroundImage]="'url(' + destaque?.urlImagem + ')'">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <span class="hero-badge">Em destaque</span>
+        <h1 class="hero-title">{{ destaque?.titulo }}</h1>
+        <p class="hero-meta">{{ destaque?.genero }} · {{ destaque?.anoLancamento }}</p>
+        <p class="hero-desc">{{ destaque?.descricao }}</p>
+        <div class="hero-actions">
+          <button class="btn-play">▶ Assistir</button>
+          <button class="btn-info">+ Info</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="secao" *ngIf="!carregando">
+
+    <div class="generos">
+      <button
+        *ngFor="let genero of generos"
+        class="genero-btn"
+        [class.ativo]="generoSelecionado === genero"
+        (click)="filtrarGenero(genero)">
+        {{ genero }}
+      </button>
+    </div>
+
+    <div *ngIf="filtro === 'todos' || filtro === 'filmes'">
+      <h2 class="secao-titulo">Filmes</h2>
+      <div class="cards-row" *ngIf="filmesFiltrados.length > 0; else semFilmes">
+        <div class="card" *ngFor="let filme of filmesFiltrados">
+          <img [src]="filme.urlImagem" [alt]="filme.titulo" />
+          <div class="card-info">
+            <h3>{{ filme.titulo }}</h3>
+            <span class="card-meta">{{ filme.anoLancamento }} · {{ filme.genero }}</span>
+            <p>{{ filme.descricao }}</p>
+          </div>
+        </div>
+      </div>
+      <ng-template #semFilmes>
+        <p class="sem-resultados">Nenhum filme encontrado para esse gênero.</p>
+      </ng-template>
+    </div>
+
+    <div *ngIf="filtro === 'todos' || filtro === 'series'">
+      <h2 class="secao-titulo">Séries</h2>
+      <div class="cards-row" *ngIf="seriesFiltradas.length > 0; else semSeries">
+        <div class="card" *ngFor="let serie of seriesFiltradas">
+          <img [src]="serie.urlImagem" [alt]="serie.titulo" />
+          <div class="card-info">
+            <h3>{{ serie.titulo }}</h3>
+            <span class="card-meta">{{ serie.anoLancamento }} · {{ serie.genero }}</span>
+            <p>{{ serie.descricao }}</p>
+          </div>
+        </div>
+      </div>
+      <ng-template #semSeries>
+        <p class="sem-resultados">Nenhuma série encontrada para esse gênero.</p>
+      </ng-template>
+    </div>
+
+  </div>
+
+  <div class="carregando" *ngIf="carregando">
+    <p>Carregando conteúdos...</p>
+  </div>
+
+</div>

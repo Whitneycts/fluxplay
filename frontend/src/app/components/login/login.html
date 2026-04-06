@@ -1,0 +1,39 @@
+<div class="login-page">
+  <div class="login-box">
+
+    <div class="login-logo">FluxPlay</div>
+    <p class="login-tagline">Sua plataforma de streaming</p>
+
+    <h2 class="login-title">Bem-vindo de volta</h2>
+    <p class="login-sub">Entre na sua conta para continuar</p>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        type="email"
+        placeholder="seu@email.com"
+        [(ngModel)]="email"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Senha</label>
+      <input
+        type="password"
+        placeholder="••••••••"
+        [(ngModel)]="senha"
+      />
+    </div>
+
+    <p class="erro" *ngIf="erro">{{ erro }}</p>
+
+    <button class="login-btn" (click)="entrar()" [disabled]="carregando">
+      {{ carregando ? 'Entrando...' : 'Entrar' }}
+    </button>
+
+    <p class="login-link">
+      Novo por aqui? <span routerLink="/cadastro">Criar conta</span>
+    </p>
+
+  </div>
+</div>
