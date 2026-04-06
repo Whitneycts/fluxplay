@@ -1,0 +1,15 @@
+com\fluxplay\dto\ConteudoResponseDTO.class
+com\fluxplay\entity\Conteudo.class
+com\fluxplay\dto\LoginRequestDTO.class
+com\fluxplay\dto\UsuarioResponseDTO.class
+com\fluxplay\entity\Usuario.class
+com\fluxplay\resource\UsuarioResource.class
+com\fluxplay\service\ConteudoService.class
+com\fluxplay\service\UsuarioService.class
+com\fluxplay\repository\UsuarioRepository.class
+com\fluxplay\entity\TipoConteudo.class
+com\fluxplay\dto\ConteudoRequestDTO.class
+com\fluxplay\dto\UsuarioRequestDTO.class
+com\fluxplay\repository\ConteudoRepository.class
+com\fluxplay\config\CorsFilter.class
+com\fluxplay\resource\ConteudoResource.class
