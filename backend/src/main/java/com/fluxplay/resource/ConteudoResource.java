@@ -6,10 +6,11 @@ import com.fluxplay.entity.TipoConteudo;
 import com.fluxplay.service.ConteudoService;
 
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
+
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
@@ -41,14 +42,14 @@ public class ConteudoResource {
 
     // Cria um novo conteúdo
     @POST
-    @Transactional
-    public void criar(@Valid ConteudoRequestDTO dto) {conteudoService.criar(dto);
+    public Response criar(@Valid ConteudoRequestDTO dto) {
+        ConteudoResponseDTO criado = conteudoService.criar(dto);
+        return Response.status(Response.Status.CREATED).entity(criado).build();
     }
 
     // Deleta um conteúdo pelo id
     @DELETE
     @Path("/{id}")
-    @Transactional
     public boolean deletar(@PathParam("id") Long id) {
         return conteudoService.deletar(id);
     }
@@ -56,7 +57,6 @@ public class ConteudoResource {
     // Atualiza todos os dados de um conteúdo
     @PUT
     @Path("/{id}")
-    @Transactional
     public ConteudoResponseDTO atualizar(@PathParam("id") Long id, @Valid ConteudoRequestDTO dto) {
         return conteudoService.atualizar(id, dto);
     }
@@ -64,7 +64,6 @@ public class ConteudoResource {
     // Atualiza apenas os campos enviados
     @PATCH
     @Path("/{id}")
-    @Transactional
     public ConteudoResponseDTO atualizarParcial(@PathParam("id") Long id, ConteudoRequestDTO dto) {
         return conteudoService.atualizarParcial(id, dto);
     }

@@ -67,11 +67,11 @@ public class ConteudoService {
         return toResponseDTO(conteudo);
     }
 
-    // Cria novo conteúdo
     @Transactional
-    public void criar(ConteudoRequestDTO dto) {
+    public ConteudoResponseDTO criar(ConteudoRequestDTO dto) {
         Conteudo conteudo = toEntity(dto);
         conteudoRepository.persist(conteudo);
+        return toResponseDTO(conteudo);
     }
 
     // Deleta conteúdo por id
@@ -104,7 +104,7 @@ public class ConteudoService {
 
     // Busca por título
     public List<ConteudoResponseDTO> buscarPorTitulo(String titulo) {
-        return conteudoRepository.busfcarPorTitulo(titulo)
+        return conteudoRepository.buscarPorTitulo(titulo)
                 .stream()
                 .map(this::toResponseDTO)
                 .toList();

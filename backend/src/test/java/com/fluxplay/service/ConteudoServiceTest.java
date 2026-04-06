@@ -2,7 +2,6 @@ package com.fluxplay.service;
 
 import com.fluxplay.dto.ConteudoRequestDTO;
 import com.fluxplay.dto.ConteudoResponseDTO;
-import com.fluxplay.entity.Conteudo;
 
 import com.fluxplay.entity.TipoConteudo;
 import io.quarkus.test.junit.QuarkusTest;

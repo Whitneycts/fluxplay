@@ -16,7 +16,7 @@ public class ConteudoRepository implements PanacheRepository<Conteudo> {
         return find("genero", genero).list();
     }
 
-    public List<Conteudo> busfcarPorTitulo(String titulo) {
+    public List<Conteudo> buscarPorTitulo(String titulo) {
         return find("lower(titulo) like lower(?1)", "%" + titulo + "%").list();
     }
 
