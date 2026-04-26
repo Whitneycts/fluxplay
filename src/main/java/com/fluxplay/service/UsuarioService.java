@@ -5,6 +5,8 @@ import com.fluxplay.dto.UsuarioRequestDTO;
 import com.fluxplay.dto.UsuarioResponseDTO;
 import com.fluxplay.entity.Usuario;
 import com.fluxplay.repository.UsuarioRepository;
+
+import io.quarkus.elytron.security.common.BcryptUtil;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -21,9 +23,9 @@ public class UsuarioService {
 
     private UsuarioResponseDTO toResponseDTO(Usuario usuario) {
         UsuarioResponseDTO dto = new UsuarioResponseDTO();
-        dto.id = usuario.id;
-        dto.nome= usuario.nome;
-        dto.email = usuario.email;
+        dto.id = usuario.getId();
+        dto.nome= usuario.getNome();
+        dto.email = usuario.getEmail();
 
         return dto;
     }
@@ -37,9 +39,9 @@ public class UsuarioService {
         }
 
         Usuario usuario = new Usuario();
-        usuario.nome = dto.nome;
-        usuario.email = dto.email;
-        usuario.senha = dto.senha;
+        usuario.setNome(dto.nome);
+        usuario.setEmail(dto.email);
+        usuario.setSenha(BcryptUtil.bcryptHash(dto.senha));
 
         usuarioRepository.persist(usuario);
 
@@ -54,7 +56,7 @@ public class UsuarioService {
         }
 
         // ← verifica se a senha bate com a salva no banco
-        if (!dto.senha.equals(usuario.senha)) {
+        if (!BcryptUtil.matches(dto.senha, usuario.getSenha())) {
             throw new NotAuthorizedException("Senha inválida");
         }
 
