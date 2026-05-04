@@ -8,5 +8,6 @@ export const routes: Routes = [
   { path: 'filmes', component: Catalogo, data: { filtro: 'filmes' } },
   { path: 'series', component: Catalogo, data: { filtro: 'series' } },
   { path: 'login', component: Login },
-  { path: 'cadastro', component: Cadastro }
+  { path: 'cadastro', component: Cadastro },
+  { path: '**', redirectTo: '' }
 ];

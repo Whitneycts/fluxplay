@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
+import { environment } from './environments/environment';
 
 export interface Conteudo {
   id: number;
@@ -16,11 +18,16 @@ export interface Conteudo {
   providedIn: 'root'
 })
 export class ConteudoService {
-  private apiUrl = 'http://localhost:8081/conteudos';
+  private apiUrl = `${environment.apiUrl}/conteudos`;
 
   constructor(private http: HttpClient) {}
 
   listarTodos(): Observable<Conteudo[]> {
-    return this.http.get<Conteudo[]>(this.apiUrl);
+    return this.http.get<Conteudo[]>(this.apiUrl).pipe(
+      catchError(error => {
+        console.error('Erro ao listar conteúdos', error);
+        return throwError(() => error);
+      })
+    );
   }
 }

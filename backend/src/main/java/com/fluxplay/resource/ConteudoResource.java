@@ -64,7 +64,7 @@ public class ConteudoResource {
     // Atualiza apenas os campos enviados
     @PATCH
     @Path("/{id}")
-    public ConteudoResponseDTO atualizarParcial(@PathParam("id") Long id, ConteudoRequestDTO dto) {
+    public ConteudoResponseDTO atualizarParcial(@PathParam("id") Long id, @Valid ConteudoRequestDTO dto) {
         return conteudoService.atualizarParcial(id, dto);
     }
 
