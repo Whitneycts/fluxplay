@@ -5,7 +5,7 @@ import com.fluxplay.dto.UsuarioRequestDTO;
 import com.fluxplay.dto.UsuarioResponseDTO;
 import com.fluxplay.entity.Usuario;
 import com.fluxplay.repository.UsuarioRepository;
-
+import io.quarkus.logging.Log;
 import io.quarkus.elytron.security.common.BcryptUtil;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -35,6 +35,7 @@ public class UsuarioService {
         Usuario existente = usuarioRepository.buscarPorEmail(dto.email);
 
         if(existente != null) {
+            Log.warn("Usuário já existe: " + dto.email);
             throw new BadRequestException("Já existe um usuário com esse email");
         }
 
@@ -44,6 +45,7 @@ public class UsuarioService {
         usuario.setSenha(BcryptUtil.bcryptHash(dto.senha));
 
         usuarioRepository.persist(usuario);
+        Log.info("Usuário criado com sucesso!: " + usuario);
 
         return toResponseDTO(usuario);
     }
@@ -57,9 +59,11 @@ public class UsuarioService {
 
         // ← verifica se a senha bate com a salva no banco
         if (!BcryptUtil.matches(dto.senha, usuario.getSenha())) {
+            Log.warn("Senha inválida: " + dto.senha);
             throw new NotAuthorizedException("Senha inválida");
         }
 
+        Log.info("Login realizado com sucesso!: " + usuario);
         return toResponseDTO(usuario);
     }
 

@@ -6,6 +6,8 @@ import com.fluxplay.entity.Conteudo;
 import com.fluxplay.entity.TipoConteudo;
 import com.fluxplay.repository.ConteudoRepository;
 
+import io.quarkus.logging.Log;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -61,6 +63,7 @@ public class ConteudoService {
         Conteudo conteudo = conteudoRepository.findById(id);
 
         if (conteudo == null) {
+            Log.warn("Conteúdo não encontrado: " + id);
             throw new NotFoundException("Conteúdo não encontrado");
         }
 
@@ -69,6 +72,7 @@ public class ConteudoService {
 
     @Transactional
     public ConteudoResponseDTO criar(ConteudoRequestDTO dto) {
+        Log.info("Criando conteúdo: " + dto);
         Conteudo conteudo = toEntity(dto);
         conteudoRepository.persist(conteudo);
         return toResponseDTO(conteudo);
@@ -77,6 +81,7 @@ public class ConteudoService {
     // Deleta conteúdo por id
     @Transactional
     public boolean deletar(Long id) {
+        Log.info("Deletando conteúdo: " + id);
         boolean deletado = conteudoRepository.deleteById(id);
 
         if (!deletado) {
@@ -130,10 +135,12 @@ public class ConteudoService {
     @Transactional
     public ConteudoResponseDTO atualizar(Long id, ConteudoRequestDTO dto) {
         Conteudo conteudo = conteudoRepository.findById(id);
+        Log.info("Atualizando conteúdo: " + conteudo);
 
         if (conteudo == null) {
             throw new NotFoundException("Conteúdo não encontrado");
         }
+        Log.info("Conteúdo encontrado: " + conteudo);
 
         conteudo.titulo = dto.titulo;
         conteudo.descricao = dto.descricao;

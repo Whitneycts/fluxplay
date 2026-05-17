@@ -1,5 +1,7 @@
 package com.fluxplay.resource;
 
+import jakarta.annotation.security.RolesAllowed;
+
 import com.fluxplay.dto.ConteudoRequestDTO;
 import com.fluxplay.dto.ConteudoResponseDTO;
 import com.fluxplay.entity.TipoConteudo;
@@ -29,12 +31,14 @@ public class ConteudoResource {
 
     // Lista todos os conteúdos
     @GET
+    @RolesAllowed({"admin", "usuario"})
     public List<ConteudoResponseDTO> listar() {
         return conteudoService.listarTodos();
     }
 
     // Busca um conteúdo pelo id
     @GET
+    @RolesAllowed({"admin", "usuario"})
     @Path("/{id}")
     public ConteudoResponseDTO buscarPorId(@PathParam("id") Long id) {
         return conteudoService.buscarPorId(id);
@@ -42,6 +46,7 @@ public class ConteudoResource {
 
     // Cria um novo conteúdo
     @POST
+    @RolesAllowed("admin")
     public Response criar(@Valid ConteudoRequestDTO dto) {
         ConteudoResponseDTO criado = conteudoService.criar(dto);
         return Response.status(Response.Status.CREATED).entity(criado).build();
@@ -49,6 +54,7 @@ public class ConteudoResource {
 
     // Deleta um conteúdo pelo id
     @DELETE
+    @RolesAllowed("admin")
     @Path("/{id}")
     public boolean deletar(@PathParam("id") Long id) {
         return conteudoService.deletar(id);
@@ -56,6 +62,7 @@ public class ConteudoResource {
 
     // Atualiza todos os dados de um conteúdo
     @PUT
+    @RolesAllowed("admin")
     @Path("/{id}")
     public ConteudoResponseDTO atualizar(@PathParam("id") Long id, @Valid ConteudoRequestDTO dto) {
         return conteudoService.atualizar(id, dto);
@@ -63,6 +70,7 @@ public class ConteudoResource {
 
     // Atualiza apenas os campos enviados
     @PATCH
+    @RolesAllowed("admin")
     @Path("/{id}")
     public ConteudoResponseDTO atualizarParcial(@PathParam("id") Long id, @Valid ConteudoRequestDTO dto) {
         return conteudoService.atualizarParcial(id, dto);
@@ -70,6 +78,7 @@ public class ConteudoResource {
 
     // Busca conteúdos por tipo
     @GET
+    @RolesAllowed({"admin", "usuario"})
     @Path("/tipo/{tipo}")
     public List<ConteudoResponseDTO> buscarPorTipo(@PathParam("tipo") TipoConteudo tipo) {
         return conteudoService.buscarPorTipo(tipo);
@@ -77,6 +86,7 @@ public class ConteudoResource {
 
     // Busca conteúdos por gênero
     @GET
+    @RolesAllowed({"admin", "usuario"})
     @Path("/genero/{genero}")
     public List<ConteudoResponseDTO> buscarPorGenero(@PathParam("genero") String genero) {
         return conteudoService.buscarPorGenero(genero);
@@ -84,6 +94,7 @@ public class ConteudoResource {
 
     // Busca conteúdos por título
     @GET
+    @RolesAllowed({"admin", "usuario"})
     @Path("/titulo/{titulo}")
     public List<ConteudoResponseDTO> buscarPorTitulo(@PathParam("titulo") String titulo) {
         return conteudoService.buscarPorTitulo(titulo);
@@ -91,6 +102,7 @@ public class ConteudoResource {
 
     // Lista conteúdos ordenados por ano crescente
     @GET
+    @RolesAllowed({"admin", "usuario"})
     @Path("/ordenados/ano/asc")
     public List<ConteudoResponseDTO> listarOrdenadoPorAnoAsc() {
         return conteudoService.listarOrdenadoPorAnoAsc();
@@ -98,6 +110,7 @@ public class ConteudoResource {
 
     // Lista conteúdos ordenados por ano decrescente
     @GET
+    @RolesAllowed({"admin", "usuario"})
     @Path("/ordenados/ano/desc")
     public List<ConteudoResponseDTO> listarOrdenadoPorAnoDesc() {
         return conteudoService.listarOrdenadoPorAnoDesc();
